@@ -14,9 +14,7 @@ from internal.ollama.chat import chat_ollama
 
 def run_model():
     diff = get_git_diff("main", "feat/git-proof")
-    chat_ollama(
-        diff, "What is the difference between these branches", "qwen2.5-coder:7b"
-    )
+    chat_ollama(diff, "Are there repeated functions? How many?", "qwen2.5-coder:7b")
 
 
 if __name__ == "__main__":

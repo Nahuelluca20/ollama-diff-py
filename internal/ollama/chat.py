@@ -1,4 +1,5 @@
-from ollama import ChatResponse, chat
+from ollama import ChatResponse
+import ollama
 
 
 def chat_ollama(diff, question, model_name):
@@ -9,8 +10,12 @@ def chat_ollama(diff, question, model_name):
         },
         {"role": "user", "content": question},
     ]
+    context = f"Based in this git diff info: {diff}"
+    prompt_for_ollama = context + f" Provide a response to: {question}"
+    generation_response = ollama.generate(
+        model=model_name,
+        prompt=prompt_for_ollama,
+    )
 
-    response: ChatResponse = chat(model=model_name, messages=messages)
-
-    print(response)
-    print(response["message"]["content"])
+    response_text = generation_response["response"].strip()
+    print(response_text)
