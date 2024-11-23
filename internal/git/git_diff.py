@@ -1,18 +1,14 @@
 import subprocess
 
 
-def git_diff(base_branch, target_branch):
+def get_git_diff(branch1, branch2):
     try:
         result = subprocess.run(
-            ["git", "diff", base_branch, target_branch],
+            ["git", "diff", branch1, branch2],
             capture_output=True,
             text=True,
+            check=True,
         )
-
-        if result.returncode != 0:
-            raise Exception(f"Error running git diff: {result.stderr}")
-
         return result.stdout
-
-    except Exception as e:
-        return str(e)
+    except subprocess.CalledProcessError as e:
+        return f"Error: {e.stderr}"
