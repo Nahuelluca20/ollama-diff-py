@@ -6,7 +6,12 @@ from rich.markdown import Markdown
 
 def run_model():
     console = Console()
-    diff = get_git_diff("main", "feat/git-proof")
+    console.print("[bold yellow]Selecciona las ramas para comparar:[/bold yellow]")
+    diff = get_git_diff()
+
+    if diff.startswith("Error:"):
+        console.print(f"[bold red]{diff}[/bold red]")
+        return
 
     console.print(
         "[bold green]Welcome to the interactive chat! Type your question or '/bye' to exit.[/bold green]"
