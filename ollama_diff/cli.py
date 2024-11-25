@@ -1,5 +1,5 @@
-from internal.git.git_diff import get_git_diff
-from internal.ollama.chat import chat_ollama
+from ollama_diff.internal.git.git_diff import get_git_diff
+from ollama_diff.internal.ollama.chat import chat_ollama
 from rich.console import Console
 from rich.markdown import Markdown
 
