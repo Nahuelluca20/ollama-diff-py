@@ -25,13 +25,13 @@ def get_git_diff(branch1=None, branch2=None):
 
         if not branch1 or not branch2:
             branch1 = questionary.select(
-                "Selecciona la primera rama:", choices=branches
+                "Select the first branch:", choices=branches
             ).ask()
 
             remaining_branches = [b for b in branches if b != branch1]
 
             branch2 = questionary.select(
-                "Selecciona la segunda rama:", choices=remaining_branches
+                "Select the second branch:", choices=remaining_branches
             ).ask()
 
         result = subprocess.run(

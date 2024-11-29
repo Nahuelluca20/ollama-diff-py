@@ -11,3 +11,18 @@ def chat_ollama(diff, question, model_name, llm_context):
     response_text = generation_response["response"].strip()
 
     return response_text, context
+
+
+def get_available_models():
+    """
+    Fetches the list of available models from a remote API.
+    """
+
+    models = ollama.list().models
+
+    if len(models) <= 0:
+        return []
+
+    models_names = [model.model for model in models]
+
+    return models_names
